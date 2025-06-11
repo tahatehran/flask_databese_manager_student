@@ -1,5 +1,5 @@
- پروژه Flask: مدیریت اطلاعات دانشجویان
-
+# پروژه Flask: مدیریت اطلاعات دانشجویان
+[![Build and Push Docker Image MovtiGroup](https://github.com/tahatehran/flask_databese_manager_student/actions/workflows/docker-build-movtigroup.yml/badge.svg)](https://github.com/tahatehran/flask_databese_manager_student/actions/workflows/docker-build-movtigroup.yml)
 ## مقدمه
 
 این پروژه یک وب سرویس ساده بر پایه فریمورک **Flask** است که برای مدیریت اطلاعات دانشجویان طراحی شده است.این وب سرویس از روش‌های **HTTP** مختلف (GET، POST) برای انجام عملیات‌های مختلف استفاده می‌کند و داده‌ها را در **MYSQL** ذخیره می‌کند. همچنین برای **Frontend**  با ظاحر بروز و مدرن می باشد و فونت نیز از گوگل می باشد . 
