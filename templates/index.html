@@ -4,86 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سیستم مدیریت دانشجویان</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" integrity="sha384-B0UglyR+oiHw0qKp7aWd63oBL+7DIrGvYYfTkhmw1l3lvfMeSU5BmdZ8HliZ5WB1" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Vazir', sans-serif;
-        }
-        header {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        h1 {
-            margin-bottom: 10px;
-            color: #343a40;
-        }
-        .container {
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .btn {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
     <div class="container">
-        <header>
-            <h1><i class="fas fa-graduation-cap"></i> سیستم مدیریت دانشجویان</h1>
-            <p class="text-muted"><i class="fas fa-user"></i> پروژه توسط طاها  </p>
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="header-text">
+                        <h1>سیستم مدیریت دانشجویان</h1>
+                        <p class="subtitle">پلتفرم هوشمند مدیریت اطلاعات دانشجویی</p>
+                    </div>
+                </div>
+                <div class="developer-badge">
+                    <i class="fas fa-code"></i>
+                    <span>توسعه یافته توسط طاها</span>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <p class="intro text-center">لطفاً یک گزینه را انتخاب کنید:</p>
-            <div class="options">
-                <div class="option mb-3">
-                    <a href="/students" class="btn btn-primary d-flex align-items-center justify-content-center">
-                        <i class="fas fa-list me-2"></i> مشاهده لیست تمام دانشجویان
-                    </a>
+        <main class="main-content">
+            <div class="welcome-section">
+                <h2>خوش آمدید</h2>
+                <p>برای شروع، یکی از گزینه‌های زیر را انتخاب کنید</p>
+            </div>
+
+            <div class="options-grid">
+                <!-- مشاهده لیست دانشجویان -->
+                <div class="option-card view-students">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>مشاهده دانشجویان</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>مشاهده لیست کامل تمام دانشجویان ثبت شده در سیستم</p>
+                        <a href="/students" class="btn btn-primary">
+                            <span>مشاهده لیست</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="option mb-3">
-                    <form action="/student" method="POST" class="search-form">
-                        <div class="mb-3">
-                            <label for="id" class="form-label"><i class="fas fa-search"></i> جستجوی دانشجو:</label>
-                            <input type="number" id="id" name="id" class="form-control" required placeholder="شناسه دانشجو را وارد کنید">
+
+                <!-- جستجوی دانشجو -->
+                <div class="option-card search-student">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-search"></i>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary w-100">جستجو</button>
-                    </form>
+                        <h3>جستجوی دانشجو</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>جستجوی دانشجو بر اساس شناسه یکتا</p>
+                        <form action="/student" method="POST" class="search-form">
+                            <div class="input-group">
+                                <input type="number" id="id" name="id" placeholder="شناسه دانشجو را وارد کنید" required>
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="option">
-                    <form action="/add_student" method="POST" class="add-form">
-                        <h3 class="text-center"><i class="fas fa-user-plus"></i> افزودن دانشجوی جدید</h3>
-                        <div class="form-group">
-                            <label for="name" class="form-label"><i class="fas fa-user"></i> نام:</label>
-                            <input type="text" id="name" name="name" class="form-control" required placeholder="نام دانشجو">
+
+                <!-- افزودن دانشجوی جدید -->
+                <div class="option-card add-student">
+                    <div class="card-header">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-user-plus"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="lastname" class="form-label"><i class="fas fa-user"></i> نام خانوادگی:</label>
-                            <input type="text" id="lastname" name="lastname" class="form-control" required placeholder="نام خانوادگی دانشجو">
-                        </div>
-                        <div class="form-group">
-                            <label for="age" class="form-label"><i class="fas fa-birthday-cake"></i> سن:</label>
-                            <input type="number" id="age" name="age" class="form-control" required placeholder="سن دانشجو">
-                        </div>
-                        <button type="submit" class="btn btn-success w-100 mt-3">افزودن دانشجو</button>
-                    </form>
+                        <h3>افزودن دانشجوی جدید</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>ثبت اطلاعات دانشجوی جدید در سیستم</p>
+                        <form action="/add_student" method="POST" class="add-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="name" name="name" placeholder="نام" required>
+                                </div>
+                                <div class="input-group">
+                                    <i class="fas fa-user-tag input-icon"></i>
+                                    <input type="text" id="lastname" name="lastname" placeholder="نام خانوادگی" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <i class="fas fa-birthday-cake input-icon"></i>
+                                <input type="number" id="age" name="age" placeholder="سن" required min="1" max="100">
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-plus"></i>
+                                <span>افزودن دانشجو</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-database"></i>
+                        <span>پایگاه داده MySQL</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-flask"></i>
+                        <span>Flask Framework</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-docker"></i>
+                        <span>Docker Ready</span>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2024 سیستم مدیریت دانشجویان - تمامی حقوق محفوظ است</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+5S8kao5z9fX+n/tlQRvYGkDmP4Wq" crossorigin="anonymous"></script>
+    <script>
+        // انیمیشن برای کارت‌ها
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.option-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.classList.add('fade-in');
+            });
+
+            // افکت hover برای دکمه‌ها
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // اعتبارسنجی فرم
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const inputs = this.querySelectorAll('input[required]');
+                    let isValid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            input.classList.add('error');
+                            isValid = false;
+                        } else {
+                            input.classList.remove('error');
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        e.preventDefault();
+                        alert('لطفاً تمام فیلدهای الزامی را پر کنید');
+                    }
+                });
+            });
+        });
+
+        // انیمیشن اشکال شناور
+        function animateShapes() {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach(shape => {
+                const randomX = Math.random() * 100;
+                const randomY = Math.random() * 100;
+                const randomRotation = Math.random() * 360;
+                
+                shape.style.transform = `translate(${randomX}vw, ${randomY}vh) rotate(${randomRotation}deg)`;
+            });
+        }
+
+        setInterval(animateShapes, 10000);
+    </script>
 </body>
 </html>
